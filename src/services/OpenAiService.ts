@@ -5,11 +5,11 @@ import type { ChatResponseModel } from "../types/DTO/ResponseModel";
 export const sendQuestionToOpenAI = async (
   messages: Message[]
 ): Promise<string> => {
-  const apikey = process.env.VITE_OPENAI_API_KEY;
-  const model = process.env.VITE_OPENAI_MODEL;
-  const url = process.env.VITE_OPENAI_API_URL;
-  const maxToken = process.env.VITE_OPENAI_MAX_TOKEN;
-  const temperature = process.env.VITE_OPENAI_TEMPERATURE;
+  const apikey = import.meta.env.VITE_OPENAI_API_KEY;
+  const model = import.meta.env.VITE_OPENAI_MODEL;
+  const url = import.meta.env.VITE_OPENAI_API_URL;
+  const maxToken = import.meta.env.VITE_OPENAI_MAX_TOKEN;
+  const temperature = import.meta.env.VITE_OPENAI_TEMPERATURE;
 
   if (!apikey) {
     console.error("API key is not defined");
@@ -24,12 +24,12 @@ export const sendQuestionToOpenAI = async (
 
   try {
     const response = await axios.post<ChatResponseModel>(
-    `${url}"/v1/chat/completions`,
+      `${url}/v1/chat/completions`,
       requestBody,
       {
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`,
+          Authorization: `Bearer ${apikey}`,
         },
       }
     );
@@ -40,5 +40,4 @@ export const sendQuestionToOpenAI = async (
     console.error("Lỗi khi gọi OpenAI API:", error);
     return "Đã xảy ra lỗi khi kết nối với OpenAI.";
   }
-  return "";
 };
