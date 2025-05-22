@@ -1,35 +1,27 @@
-// src/components/GrapesjsEditor.tsx
+// src/components/Home.tsx
 
-import { useEffect, useRef, type FunctionComponent } from "react";
-import { initGrapesJS } from "../../configs/GrapesJsConfig";
+import { type FunctionComponent } from "react";
 
-interface GrapesjsEditorProps {}
+interface HomeProps {}
 
-const GrapesjsEditor: FunctionComponent<GrapesjsEditorProps> = () => {
-  const editorRef = useRef<HTMLDivElement>(null);
-  const editorInstance = useRef<any>(null);
-
-  // useEffect để khởi tạo và dọn dẹp GrapesJS
-  useEffect(() => {
-    if (editorRef.current && !editorInstance.current) {
-      editorInstance.current = initGrapesJS(editorRef.current.id);
-    }
-
-    return () => {
-      if (editorInstance.current) {
-        editorInstance.current.destroy();
-        editorInstance.current = null;
-      }
-    };
-  }, []);
-
+const Home: FunctionComponent<HomeProps> = () => {
   return (
-    <div
-      className="w-full h-full min-h-[100vh]"
-      id="grapes-editor"
-      ref={editorRef}
-    ></div>
+    <div className="w-full flex flex-col items-center justify-center min-h-screen">
+      <h1>Chọn tác vụ bạn muốn:</h1>
+      <a
+        href="/CreateTemplate"
+        className="inline-flex bg-blue-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center text-black my-4"
+      >
+        Tạo mẫu email
+      </a>
+      <a
+        href="/ViewExcel"
+        className="inline-flex bg-blue-400 font-medium rounded-lg text-sm px-5 py-2.5 text-center text-black my-4"
+      >
+        Xem file Excel
+      </a>
+    </div>
   );
 };
 
-export default GrapesjsEditor;
+export default Home;
