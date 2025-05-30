@@ -2,13 +2,13 @@ import React from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
 // Import các Components
-import ViewExcel from "../pages/ViewExcel";
 import NotFound from "../components/NotFound";
+import ContactsPage from "../pages/Recipients";
 import CreateTeamplate from "../pages/CreateTemplate";
-import Home from "../pages/Home";
 import FileUploader from "../pages/FileUploader";
+import Home from "../pages/Home";
 import LogsSendMail from "../pages/LogsSendMail";
-import Contacts from "../pages/Contacts";
+import UploadFileRecipient from "../pages/UploadFileRecipient";
 
 const AppRouter: React.FC = () => {
   return (
@@ -16,9 +16,9 @@ const AppRouter: React.FC = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/CreateTemplate" element={<CreateTeamplate />} />
-        <Route path="/ViewExcel" element={<ViewExcel />} />
+        <Route path="/UploadFileContact" element={<UploadFileRecipient />} />
         <Route path="/LogsSendMail" element={<LogsSendMail />} />
-        <Route path="/ContactList" element={<Contacts />} />
+        <Route path="/ContactList" element={<ContactsPage />} />
         <Route path="/FileUploader" element={<FileUploader />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

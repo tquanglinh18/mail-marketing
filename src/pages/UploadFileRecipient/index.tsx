@@ -1,8 +1,8 @@
 import React, { useState } from "react";
-import type { ExcelDataModel } from "../../types/DTO/ExcelDataModel";
+import type { ExcelDataModel } from "../../types/ExcelDataModel";
 import { handleFileUpload } from "../../utils/ReadFileExcel";
 
-const ViewExcel: React.FC = () => {
+const UploadFileRecipient: React.FC = () => {
   const [fileName, setFileName] = useState<string | null>(null);
   const [excelData, setExcelData] = useState<ExcelDataModel[] | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -123,4 +123,4 @@ const ViewExcel: React.FC = () => {
   );
 };
 
-export default ViewExcel;
+export default UploadFileRecipient;

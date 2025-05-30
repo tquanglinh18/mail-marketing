@@ -1,6 +1,6 @@
 import axios from "axios";
-import type { ChatRequestModel, Message } from "../types/DTO/RequestModel";
-import type { ChatResponseModel } from "../types/DTO/ResponseModel";
+import type { ChatResponseModel } from "../types/ResponseModel";
+import type { ChatRequestModel, Message } from "../types/RequestModel";
 
 export const sendQuestionToOpenAI = async (
   messages: Message[]
