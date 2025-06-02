@@ -3,7 +3,7 @@ import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 
 // Import các Components
 import NotFound from "../components/NotFound";
-import ContactsPage from "../pages/Recipients";
+import Recipients from "../pages/Recipients";
 import CreateTeamplate from "../pages/CreateTemplate";
 import FileUploader from "../pages/FileUploader";
 import Home from "../pages/Home";
@@ -16,9 +16,9 @@ const AppRouter: React.FC = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/CreateTemplate" element={<CreateTeamplate />} />
-        <Route path="/UploadFileContact" element={<UploadFileRecipient />} />
+        <Route path="/UploadFileRecipient" element={<UploadFileRecipient />} />
         <Route path="/LogsSendMail" element={<LogsSendMail />} />
-        <Route path="/ContactList" element={<ContactsPage />} />
+        <Route path="/Recipients" element={<Recipients />} />
         <Route path="/FileUploader" element={<FileUploader />} />
         <Route path="*" element={<NotFound />} />
       </Routes>

@@ -6,13 +6,52 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100%;
+  background: #261e35;
 }
 
 #root {
-  display: flex; 
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   width: 100%;
   height: 100vh;
+}
+
+.ctn-grd-mormal {
+  width: 100%;
+  min-width: 240px;
+  aspect-ratio: 4/2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #3c354a;
+  padding: 1rem;
+  border-radius: 1.5rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  border-bottom: 6px solid rgba(255, 255, 255, 0.5);
+  color: white;
+  position: relative;
+  margin: 1.75rem auto 1rem auto;
+  transition: background 0.5s ease, border-bottom 0.5s ease;
+}
+
+.ctn-grd-mormal:hover {
+  background: rgba(255, 255, 255, 0.5);
+  border-bottom: 6px solid #3c354a;
+}
+
+.ctn-grd-mormal .action-ic {
+  width: 3.5rem;
+  height: 3.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  background: rgba(255, 255, 255);
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  transition: transform 0.5s ease;
+}
+
+.ctn-grd-mormal:hover .action-ic {
+  transform: scale(1.3) translate(-50%, -50%);
 }

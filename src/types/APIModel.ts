@@ -14,6 +14,9 @@ export interface TemplateImage {
 }
 
 export interface UploadBatch {
+  message: string;
+  data: any;
+  isSuccessed: any;
   batchId: number;
   batchName: string;
   uploadedFileName: string | null;

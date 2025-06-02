@@ -2,25 +2,23 @@ import { useEffect, useState, type FunctionComponent } from "react";
 import RecipientsApi from "../../libs/RecipientsApi";
 import type { EmailRecipient } from "../../types/APIModel";
 
-interface ContactsPageProps {}
+interface RecipientsProps {}
 
-const ContactsPage: FunctionComponent<ContactsPageProps> = () => {
+const Recipients: FunctionComponent<RecipientsProps> = () => {
   const [recipients, setRecipients] = useState<EmailRecipient[]>([]);
 
+  const fetchRecipients = async () => {
+    const response = await RecipientsApi.getAllRecipients();
+    console.log("Fetched recipients:", response);
+    setRecipients(response);
+  };
 
-      const fetchRecipients = async () => {
-      const response = await RecipientsApi.getAllRecipients();
-      console.log("Fetched recipients:", response);
-      setRecipients(response);
-    };
-
-    const searchByKeyword = async (key: string ) => {
-      const response = await RecipientsApi.searchByKeyword(key);
-      console.log("Searched recipients:", response);
-      // setRecipients(response);
-    };
+  const searchByKeyword = async (key: string) => {
+    const response = await RecipientsApi.searchByKeyword(key);
+    console.log("Searched recipients:", response);
+    // setRecipients(response);
+  };
   useEffect(() => {
-
     fetchRecipients();
     searchByKeyword("Tran");
   }, []);
@@ -39,4 +37,4 @@ const ContactsPage: FunctionComponent<ContactsPageProps> = () => {
   );
 };
 
-export default ContactsPage;
+export default Recipients;
