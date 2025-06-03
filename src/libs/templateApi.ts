@@ -3,7 +3,7 @@ import type { EmailTemplate } from "../types/APIModel";
 import axiosClient from "./axiosClient";
 
 const templateApi = {
-  create: (data: EmailTemplate) => {
+  create: (data: EmailTemplate): Promise<EmailTemplate> => {
     const url = ApiEndpoints.TEMPLATE.CREATE;
     return axiosClient.post(url, data);
   },

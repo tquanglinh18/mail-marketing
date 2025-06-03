@@ -5,7 +5,7 @@ import { ROUTES } from "../constants/routes";
 // Import các Components
 import NotFound from "../components/NotFound";
 import CreateTeamplate from "../pages/CreateTemplate";
-import ListTemplates from "../pages/EmailTemplate";
+import ListTemplates from "../pages/ListTemplate";
 import FileUploader from "../pages/FileUploader";
 import Dashboard from "../pages/Home";
 import LogsSendMail from "../pages/LogsSendMail";

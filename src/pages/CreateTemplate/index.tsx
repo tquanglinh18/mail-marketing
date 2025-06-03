@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, type FunctionComponent } from "react";
 import { initGrapesJS } from "../../configs/GrapesJsConfig";
+import CustomModal from "../../components/Modal/CustomModal";
 
 interface CreateTeamplateProps {}
 
@@ -24,11 +25,20 @@ const CreateTeamplate: FunctionComponent<CreateTeamplateProps> = () => {
   }, []);
 
   return (
-    <div
-      className="w-full h-full min-h-[100vh]"
-      id="grapes-editor"
-      ref={editorRef}
-    ></div>
+    <div className="">
+      <div
+        className="w-full h-full min-h-[100vh]"
+        id="grapes-editor"
+        ref={editorRef}
+      ></div>
+      <CustomModal
+        isOpen={false}
+        onClose={function (): void {
+          throw new Error("Function not implemented.");
+        }}
+        children={<>Oke</>}
+      ></CustomModal>
+    </div>
   );
 };
 

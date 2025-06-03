@@ -37,7 +37,8 @@ export default function ListTemplates() {
               </p>
 
               <p className="w-full mb-3 font-normal text-gray-700">
-                Ngày tạo: <b>{temp.createdDate}</b>
+                Ngày tạo:{" "}
+                <b>{new Date(temp.createdDate).toLocaleDateString("vi-VN")}</b>
               </p>
               <p className="w-full mb-3 font-normal text-gray-700">
                 Người tạo: <b>{temp.createdBy}</b>
