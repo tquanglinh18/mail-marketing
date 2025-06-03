@@ -6,8 +6,6 @@ import type {
 import axios from "axios";
 import type { ResponseDTO } from "../types/APIModel";
 
-// Tạo Axios Instance
-
 const apiURL = import.meta.env.VITE_API_URL;
 
 const axiosClient: AxiosInstance = axios.create({
@@ -15,7 +13,7 @@ const axiosClient: AxiosInstance = axios.create({
   headers: {
     "Content-Type": "application/json",
   },
-  timeout: 15000,
+  timeout: 10000,
 });
 
 axiosClient.interceptors.request.use(
@@ -24,13 +22,15 @@ axiosClient.interceptors.request.use(
     return config;
   },
   (error) => {
+    if (error.code === "ECONNABORTED") {
+      throw new Error("Yêu cầu quá thời gian chờ. Vui lòng thử lại.");
+    }
     console.error("Request Error:", error);
     return Promise.reject(error);
   }
 );
 
 axiosClient.interceptors.response.use(
-  // Hàm này chạy khi response có status 2xx (Thành công về mặt HTTP)
   (response: AxiosResponse<ResponseDTO<any>>) => {
     const apiResponse: ResponseDTO<any> = response.data;
 
@@ -38,11 +38,11 @@ axiosClient.interceptors.response.use(
       return apiResponse.data;
     }
 
-    // Ném lỗi khi isSuccessed = false
     const errorMessage =
       apiResponse?.message || "API trả về lỗi nhưng không có message.";
     throw new Error(errorMessage);
   },
+
   // Hàm này chạy khi response có status khác 2xx (Lỗi HTTP) hoặc lỗi mạng
   (error) => {
     console.error("Lỗi Axios Interceptor:", error);

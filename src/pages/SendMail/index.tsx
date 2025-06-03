@@ -1,9 +1,7 @@
 import type { FunctionComponent } from "react";
 
-interface SendMailProps {}
-
-const SendMailPage: FunctionComponent<SendMailProps> = () => {
+const SendMail: FunctionComponent = () => {
   return <> Send Mail Page</>;
 };
 
-export default SendMailPage;
+export default SendMail;

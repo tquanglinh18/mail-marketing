@@ -9,6 +9,7 @@ import grapesjsNavbar from "grapesjs-navbar";
 import grapesjsPluginForms from "grapesjs-plugin-forms";
 import grapesjsTabs from "grapesjs-tabs";
 import { exportHtmlFile } from "../utils/ExportHTMLUtils";
+import { SaveTemplate } from "../utils/SaveTemplate";
 
 export function initGrapesJS(containerId: string) {
   const editor = grapesjs.init({
@@ -79,7 +80,7 @@ export function initGrapesJS(containerId: string) {
         sender.set("active", false);
       }
       console.log("Redirecting to home page...");
-      window.location.href = "./";
+      SaveTemplate(_editor);
     },
     stop: (_editor, sender) => {
       if (sender) {

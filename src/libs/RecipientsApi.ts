@@ -1,8 +1,5 @@
-import { ApiEndpoints } from "../common/ApiEndpoints";
-import type {
-  EmailRecipient,
-  UploadBatch
-} from "../types/APIModel";
+import { ApiEndpoints } from "../constants/ApiEndpoints";
+import type { EmailRecipient, UploadBatch } from "../types/APIModel";
 import axiosClient from "./axiosClient";
 
 const RecipientsApi = {
