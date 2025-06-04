@@ -67,3 +67,10 @@ export interface ResponseDTO<T> {
   message: string;
   isSuccessed: boolean;
 }
+
+export interface FileS3Response {
+  key: string;
+  size: number;
+  url: string;
+  lastModified: string;
+}

@@ -1,7 +1,7 @@
 import React from "react";
 import * as XLSX from "xlsx";
-import type { ExcelDataModel } from "../types/DTO/ExcelDataModel";
-import type { ParsedExcelData } from "../types/DTO/ResponseReadFileModel";
+import type { ParsedExcelData } from "../types/ResponseReadFileModel";
+import type { ExcelDataModel } from "../types/ExcelDataModel";
 
 export const handleFileUpload = (
   event: React.ChangeEvent<HTMLInputElement>

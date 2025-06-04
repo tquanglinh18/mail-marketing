@@ -6,13 +6,13 @@ import { ROUTES } from "../constants/routes";
 import NotFound from "../components/NotFound";
 import CreateTeamplate from "../pages/CreateTemplate";
 import ListTemplates from "../pages/ListTemplate";
-import FileUploader from "../pages/FileUploader";
 import Dashboard from "../pages/Home";
 import LogsSendMail from "../pages/LogsSendMail";
 import Recipients from "../pages/Recipients";
 import SendMail from "../pages/SendMail";
 import UploadFileRecipient from "../pages/UploadFileRecipient";
 import TemplateDetail from "../pages/TemplateDetail";
+import S3Storage from "../pages/S3Storage";
 
 const AppRouter: React.FC = () => {
   return (
@@ -26,7 +26,7 @@ const AppRouter: React.FC = () => {
         />
         <Route path={ROUTES.LOGS_SEND_MAIL} element={<LogsSendMail />} />
         <Route path={ROUTES.RECIPIENTS} element={<Recipients />} />
-        <Route path={ROUTES.FILE_UPLOADER} element={<FileUploader />} />
+        <Route path={ROUTES.FILE_UPLOADER} element={<S3Storage />} />
         <Route path={ROUTES.SEND_MAIL} element={<SendMail />} />
         <Route path={ROUTES.LIST_TEMPLATES} element={<ListTemplates />} />
         <Route path={ROUTES.TEMPLATE_DETAIL} element={<TemplateDetail />} />

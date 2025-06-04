@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import templateApi from "../../libs/templateApi";
+import templateApi from "../../libs/TemplateApi";
 import type { EmailTemplate } from "../../types/APIModel";
+import { ROUTES } from "../../constants/routes";
 
 export default function TemplateDetail() {
   const { id } = useParams();
@@ -10,9 +11,9 @@ export default function TemplateDetail() {
     try {
       var temp = await templateApi.getById(id);
       setTemplate(temp);
-      console.log("Template fetched:", temp);
     } catch (error) {
-      console.error("Error fetching template by ID:", error);
+      alert("Không tìm thấy mẫu Email với ID: " + id);
+      window.location.href = ROUTES.LIST_TEMPLATES;
     }
   };
   useEffect(() => {
@@ -23,15 +24,18 @@ export default function TemplateDetail() {
       {template ? (
         <div className="w-full max-w-2xl mx-auto p-6 text-white">
           <h1 className="text-3xl font-bold mb-4">{template.templateName}</h1>
-          <div className="w-full flex gap-4">
+          <div className="w-full flex justify-between gap-4">
             <p className="mb-2">
-              <strong>ID:</strong> {template.templateId}
+              ID: <b>{template.templateId}</b>
             </p>
             <p className="mb-2">
-              <strong>Ngày tạo:</strong> {template.createdDate}
+              Ngày tạo:{" "}
+              <b>
+                {new Date(template.createdDate).toLocaleDateString("vi-VN")}
+              </b>
             </p>
             <p className="mb-2">
-              <strong>Người tạo:</strong> {template.createdBy}
+              Người tạo: <b>{template.createdBy}</b>
             </p>
           </div>
           <div className="mt-4">

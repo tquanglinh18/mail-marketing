@@ -19,11 +19,10 @@ export function initGrapesJS(containerId: string) {
     fromElement: false,
     showOffsets: true,
     noticeOnUnload: true,
-
     storageManager: {
       type: "local",
       autosave: true,
-      autoload: true,
+      autoload: false,
     },
 
     plugins: [

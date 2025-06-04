@@ -1,6 +1,6 @@
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import templateApi from "../libs/templateApi";
+import templateApi from "../libs/TemplateApi";
 import { ROUTES } from "../constants/routes";
 
 export const SaveTemplate = async (editor: any | null) => {
@@ -21,7 +21,7 @@ export const SaveTemplate = async (editor: any | null) => {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exported Page</title>
+    <title>Email</title>
     <style>
         ${css}
     </style>
@@ -77,7 +77,6 @@ export const SaveTemplate = async (editor: any | null) => {
         icon: "success",
         confirmButtonText: "OK",
       }).then(() => {
-        // Chuyển hướng về trang danh sách mẫu email
         window.location.href = ROUTES.LIST_TEMPLATES;
       });
     } else {

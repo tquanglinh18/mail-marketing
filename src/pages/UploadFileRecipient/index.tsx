@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import type { ExcelDataModel } from "../../types/ExcelDataModel";
 import { handleFileUpload } from "../../utils/ReadFileExcel";
+import RecipientsApi from "../../libs/RecipientsApi";
 
 const UploadFileRecipient: React.FC = () => {
+  const [file, setFile] = useState<File | null>(null);
   const [fileName, setFileName] = useState<string | null>(null);
   const [excelData, setExcelData] = useState<ExcelDataModel[] | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -10,32 +12,54 @@ const UploadFileRecipient: React.FC = () => {
   const [header, setHeader] = useState<string[]>([]);
 
   const onFileChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    setExcelData(null); // Reset dữ liệu cũ
-    setError(null); // Reset lỗi cũ
+    setExcelData(null);
+    setError(null);
+    const fileSel = event.target.files?.[0];
+    if (fileSel) {
+      setFile(fileSel);
+    }
 
     try {
-      // CHỜ ĐỢI hàm handleFileUpload hoàn thành và trả về dữ liệu
       const data = await handleFileUpload(event);
-      setLoading(true); // Bắt đầu quá trình tải lên
+      setLoading(true);
       setTimeout(() => {
         setLoading(false);
-        setExcelData(data.data); // Lưu dữ liệu vào state
-        setFileName(data?.filename); // Lưu tên file vào state
-        setHeader(data?.header); // Lưu header vào state
+        setExcelData(data.data);
+        setFileName(data?.filename);
+        setHeader(data?.header);
       }, 2000);
     } catch (err: any) {
-      // Cần chỉ định kiểu cho err để truy cập message
       setError(err.message || "Đã xảy ra lỗi không xác định khi đọc file.");
     }
   };
 
+  const handleUploadFileToS3 = async () => {
+    if (!file) {
+      console.error("Upload thất bại 😢: ", error);
+      return;
+    }
+    const formData = new FormData();
+    formData.append("file", file);
+    formData.append(
+      "batchName",
+      file.name + " - " + new Date().toLocaleDateString("vi-VN")
+    );
+
+    try {
+      const response = await RecipientsApi.uploadRecipientFromExcel(formData);
+      console.log("Kết quả: Upload thành công 🎉:", response);
+    } catch (error) {
+      console.error("Upload thất bại 😢: ", error);
+    }
+  };
+
   return (
-    <div className="w-full max-w-[1024px] mx-auto flex flex-col items-start justify-start min-h-screen text-center p-4">
+    <div className="w-full max-w-[1024px] text-white mx-auto flex flex-col items-start justify-start min-h-screen text-center p-4">
       <h1 className="w-full text-center">
         Tải lên file Excel thông tin người nhận:
       </h1>
       <p
-        className="w-full text-center mt-1 text-sm text-gray-500 italic"
+        className="w-full text-center mt-1 text-sm italic"
         id="file_input_help"
       >
         (*) Vui lòng chọn file Excel có định dạng .xlsx.
@@ -53,7 +77,7 @@ const UploadFileRecipient: React.FC = () => {
           className="w-fit block mb-2 text-sm font-medium text-gray-900"
           htmlFor="file_input"
         >
-          <div className="text-white bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center">
+          <div className="cursor-pointer text-white bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center">
             {loading ? (
               <>
                 <svg
@@ -76,21 +100,28 @@ const UploadFileRecipient: React.FC = () => {
                 Loading...
               </>
             ) : (
-              "Tải file lên"
+              "Chọn file"
             )}
           </div>
         </label>
 
         {fileName && (
-          <p className="text-sm text-gray-500 mt-2">
+          <p className="text-sm mt-2">
             Upload thành công: &nbsp;
             <span className="text-green-500">{fileName}</span>
           </p>
         )}
       </form>
       {excelData && (
-        <div className="w-full mt-4">
-          <h2>Dữ liệu từ Excel:</h2>
+        <div className="w-full flex flex-col gap-4 mt-4">
+          <div className="flex justify-end">
+            <button
+              onClick={handleUploadFileToS3}
+              className="w-fit text-white bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center"
+            >
+              Upload
+            </button>
+          </div>
           <div className="w-full ">
             <table className="w-full border border-gray-300">
               <thead>

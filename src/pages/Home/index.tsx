@@ -11,7 +11,7 @@ const Dashboard: FunctionComponent<DashboardProps> = () => {
       <h1 className="w-full text-white font-bold text-center mb-4 text-3xl">
         Marketing Email
       </h1>
-      <div className="w-full grid grid-cols-4 gap-6">
+      <div className="w-full grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         {pageAction.map((action) => (
           <ActionCard
             key={action.to}
