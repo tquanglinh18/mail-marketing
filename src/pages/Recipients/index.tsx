@@ -63,7 +63,7 @@ const Recipients: FunctionComponent<RecipientsProps> = () => {
                     </div>
                     <div className="flex-1 min-w-0 ms-4">
                       <p className="text-sm font-medium truncate text-white">
-                        {recipient.recipientName}
+                        {recipient.recipientName === "" ? <span className="text-red-500 italic">NoName</span> : recipient.recipientName}
                       </p>
                       <p className="text-sm text-gray-500 truncate dark:text-gray-400">
                         {recipient.recipientEmail}
