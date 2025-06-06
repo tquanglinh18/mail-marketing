@@ -2,7 +2,7 @@ import { ApiEndpoints } from "../constants/ApiEndpoints";
 import type { EmailTemplate } from "../types/APIModel";
 import axiosClient from "./axiosClient";
 
-const templateApi = {
+const TemplateApi = {
   create: (data: EmailTemplate): Promise<EmailTemplate> => {
     const url = ApiEndpoints.TEMPLATE.CREATE;
     return axiosClient.post(url, data);
@@ -24,4 +24,4 @@ const templateApi = {
   },
 };
 
-export default templateApi;
+export default TemplateApi;

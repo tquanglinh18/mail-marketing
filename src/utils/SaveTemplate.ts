@@ -1,6 +1,6 @@
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import templateApi from "../libs/TemplateApi";
+import TemplateApi from "../libs/templateApi";
 import { ROUTES } from "../constants/routes";
 
 export const SaveTemplate = async (editor: any | null) => {
@@ -69,7 +69,7 @@ export const SaveTemplate = async (editor: any | null) => {
   });
 
   if (formValues) {
-    const response = await templateApi.create(formValues);
+    const response = await TemplateApi.create(formValues);
     if (response) {
       MySwal.fire({
         title: "Lưu mẫu thành công!",

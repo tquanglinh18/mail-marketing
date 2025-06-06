@@ -1,5 +1,5 @@
 export const ROUTES = {
-  HOME: "/",
+  DASHBOARD: "/",
   CREATE_TEMPLATE: "/CreateTemplate",
   UPLOAD_FILE_RECIPIENT: "/UploadFileRecipient",
   LOGS_SEND_MAIL: "/LogsSendMail",

@@ -18,7 +18,7 @@ const AppRouter: React.FC = () => {
   return (
     <Router>
       <Routes>
-        <Route path={ROUTES.HOME} element={<Dashboard />} />
+        <Route path={ROUTES.DASHBOARD} element={<Dashboard />} />
         <Route path={ROUTES.CREATE_TEMPLATE} element={<CreateTeamplate />} />
         <Route
           path={ROUTES.UPLOAD_FILE_RECIPIENT}

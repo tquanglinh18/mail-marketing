@@ -74,3 +74,7 @@ export interface FileS3Response {
   url: string;
   lastModified: string;
 }
+
+export interface NormalObject {
+  [key: string]: string; 
+}

@@ -32,6 +32,11 @@ const RecipientsApi = {
     const url = `${ApiEndpoints.RECIPIENT.RECIPIENTS_BY_BATCH_BASE}/${batchId}`;
     return axiosClient.get(url);
   },
+
+  getAllBatch: (): Promise<UploadBatch[]> => {
+    const url = `${ApiEndpoints.RECIPIENT.GET_ALL_BATCH}`;
+    return axiosClient.get(url);
+  },
 };
 
 export default RecipientsApi;

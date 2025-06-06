@@ -4,10 +4,13 @@ import Loading from "../../components/Loading";
 import { faFile } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import type { FileS3Response } from "../../types/APIModel";
+import Swal from "sweetalert2";
+import { ROUTES } from "../../constants/routes";
 
 export default function S3Storage() {
-  const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [isLoading, setIsLoading] = useState<boolean>(false);
   const [lstFiles, setLstFiles] = useState<FileS3Response[]>([]);
+  const [isError, setIsError] = useState<boolean>(false);
   useEffect(() => {
     setIsLoading(true);
     const fetchFiles = async () => {
@@ -15,11 +18,17 @@ export default function S3Storage() {
         const response = await S3AWSApi.getFileBucket();
         console.log("Fetched files:", response);
         setLstFiles(response);
-        setTimeout(() => {
-          setIsLoading(false);
-        }, 1000);
       } catch (error) {
-        console.error("Error fetching files:", error);
+        Swal.fire({
+          title: "Đã có lỗi xảy ra",
+          icon: "error",
+          confirmButtonText: "Quay về",
+          preConfirm: () => {
+            window.location.href = ROUTES.DASHBOARD;
+          },
+        });
+      } finally {
+        setIsLoading(false);
       }
     };
 

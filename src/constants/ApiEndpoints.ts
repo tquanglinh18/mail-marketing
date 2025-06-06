@@ -6,11 +6,13 @@ export const ApiEndpoints = {
     SEARCH_BASE: "/Recipient/SearchByKeyword",
     UPLOAD_EXCEL: "/Recipient/UploadRecipientsFromExcel",
     RECIPIENTS_BY_BATCH_BASE: "/Recipient/GetRecipientsByBatchId",
+    GET_ALL_BATCH: "/Recipient/GetAllBatch",
   },
 
   // --- SendMail ---
   SEND_MAIL: {
-    SEND_BULK: "/SendMail/SendBulkMail",
+    SEND_MAIL_WITH_MAILGUN: "/SendMail/SendBulkMailWithMailgun",
+    SEND_MAIL_WITH_SENDGRID: "/SendMail/SendBulkMailWithSendGrid",
   },
 
   // --- Template ---

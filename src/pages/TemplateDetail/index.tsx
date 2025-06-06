@@ -1,15 +1,16 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import templateApi from "../../libs/TemplateApi";
+
 import type { EmailTemplate } from "../../types/APIModel";
 import { ROUTES } from "../../constants/routes";
+import TemplateApi from "../../libs/templateApi";
 
 export default function TemplateDetail() {
   const { id } = useParams();
   const [template, setTemplate] = useState<EmailTemplate>();
   const fetchTemplateById = async (id: number) => {
     try {
-      var temp = await templateApi.getById(id);
+      var temp = await TemplateApi.getById(id);
       setTemplate(temp);
     } catch (error) {
       alert("Không tìm thấy mẫu Email với ID: " + id);

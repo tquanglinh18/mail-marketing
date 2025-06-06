@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { ROUTES } from "../../constants/routes";
-import templateApi from "../../libs/TemplateApi";
 import type { EmailTemplate } from "../../types/APIModel";
 import Loading from "../../components/Loading";
+import TemplateApi from "../../libs/templateApi";
 
 export default function ListTemplates() {
   const [listTemplates, setListTemplates] = useState<EmailTemplate[]>([]);
@@ -11,7 +11,7 @@ export default function ListTemplates() {
   const fetchTemplates = async () => {
     setIsLoading(true);
     try {
-      const response = await templateApi.getAll();
+      const response = await TemplateApi.getAll();
       console.log("Templates fetched:", response);
       setListTemplates(response);
       setTimeout(() => {
