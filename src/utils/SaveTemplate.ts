@@ -1,7 +1,7 @@
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import TemplateApi from "../libs/templateApi";
 import { ROUTES } from "../constants/routes";
+import TemplateApi from "../libs/templateApi";
 
 export const SaveTemplate = async (editor: any | null) => {
   const MySwal = withReactContent(Swal);
@@ -77,7 +77,7 @@ export const SaveTemplate = async (editor: any | null) => {
         icon: "success",
         confirmButtonText: "OK",
       }).then(() => {
-        window.location.href = ROUTES.LIST_TEMPLATES;
+        window.location.href = ROUTES.DASHBOARD;
       });
     } else {
       MySwal.fire({

@@ -1,7 +1,7 @@
 import { useEffect, useState, type ChangeEvent, type FormEvent } from "react";
 import Loading from "../../components/Loading";
 import RecipientsApi from "../../libs/RecipientsApi";
-import TemplateApi from "../../libs/templateApi";
+import TemplateApi from "../../libs/TemplateApi";
 import type {
   EmailTemplate,
   NormalObject,

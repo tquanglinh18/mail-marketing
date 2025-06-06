@@ -93,7 +93,7 @@ const UploadFileRecipient: React.FC = () => {
           htmlFor="file_input"
         >
           <div className="cursor-pointer text-white bg-blue-700 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center">
-            "Chọn file"
+            Chọn file
           </div>
         </label>
 

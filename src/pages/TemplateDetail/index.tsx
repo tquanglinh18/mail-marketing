@@ -3,7 +3,7 @@ import { useParams } from "react-router-dom";
 
 import type { EmailTemplate } from "../../types/APIModel";
 import { ROUTES } from "../../constants/routes";
-import TemplateApi from "../../libs/templateApi";
+import TemplateApi from "../../libs/TemplateApi";
 
 export default function TemplateDetail() {
   const { id } = useParams();

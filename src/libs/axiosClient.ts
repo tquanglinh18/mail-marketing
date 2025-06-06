@@ -5,6 +5,8 @@ import type {
 } from "axios";
 import axios from "axios";
 import type { ResponseDTO } from "../types/APIModel";
+import Swal from "sweetalert2";
+import { ROUTES } from "../constants/routes";
 
 const apiURL = import.meta.env.VITE_API_URL;
 
@@ -43,7 +45,6 @@ axiosClient.interceptors.response.use(
     throw new Error(errorMessage);
   },
 
-  // Hàm này chạy khi response có status khác 2xx (Lỗi HTTP) hoặc lỗi mạng
   (error) => {
     console.error("Lỗi Axios Interceptor:", error);
 
@@ -53,10 +54,36 @@ axiosClient.interceptors.response.use(
       const apiError: ResponseDTO<any> = error.response.data;
       errorMessage =
         apiError?.message || error.response.data?.message || error.message;
+      Swal.fire({
+        title: "Lỗi",
+        icon: "error",
+        text:
+          apiError?.message || error.response.data?.message || error.message,
+        confirmButtonText: "Về trang chủ",
+        preConfirm: () => {
+          window.location.href = ROUTES.DASHBOARD;
+        },
+      });
     } else if (error.request) {
-      errorMessage =
-        "Không thể kết nối đến máy chủ. Vui lòng kiểm tra lại mạng.";
+      Swal.fire({
+        title: "Lỗi",
+        icon: "error",
+        text: "Không thể kết nối đến máy chủ. Vui lòng kiểm tra lại mạng.",
+        confirmButtonText: "Về trang chủ",
+        preConfirm: () => {
+          window.location.href = ROUTES.DASHBOARD;
+        },
+      });
     } else {
+      Swal.fire({
+        title: "Lỗi",
+        icon: "error",
+        text: error.message,
+        confirmButtonText: "Về trang chủ",
+        preConfirm: () => {
+          window.location.href = ROUTES.DASHBOARD;
+        },
+      });
       errorMessage = error.message;
     }
 

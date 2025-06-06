@@ -1,5 +1,5 @@
 import { ApiEndpoints } from "../constants/ApiEndpoints";
-import type { FileS3Response, ResponseDTO } from "../types/APIModel";
+import type { FileS3Response } from "../types/APIModel";
 import axiosClient from "./axiosClient";
 
 const S3AWSApi = {
